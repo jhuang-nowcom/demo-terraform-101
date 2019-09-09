@@ -1,3 +1,7 @@
+provider "aws" {
+  # MODIFY this line to look for 2.27.0 or greater
+  version = ">= 2.27.0"
+}
 resource "aws_key_pair" "default" {
   key_name   = "${var.identity}-key"
   public_key = var.public_key
@@ -63,11 +67,6 @@ resource "aws_instance" "web" {
     inline = [
       "sudo sh /tmp/assets/setup-web.sh",
     ]
-  }
-  
-  provider "aws" {
-  # MODIFY this line to look for 2.27.0 or greater
-  version = ">= 2.27.0"
   }
 }
 
